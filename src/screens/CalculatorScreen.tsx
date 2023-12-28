@@ -1,5 +1,5 @@
 import {View, Text, Pressable} from 'react-native';
-import {styles} from '../config/app-theme';
+import {styles} from '../config/theme/app-theme';
 
 export const CalculatorScreen = () => {
   return (

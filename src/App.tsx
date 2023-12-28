@@ -1,7 +1,7 @@
 import React from 'react';
 import {StatusBar, Text, View} from 'react-native';
 import {CalculatorScreen} from './screens/CalculatorScreen';
-import {styles} from './config/app-theme';
+import {styles} from './config/theme/app-theme';
 
 function App() {
   return (
