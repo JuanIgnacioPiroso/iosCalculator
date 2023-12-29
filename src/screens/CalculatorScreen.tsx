@@ -4,7 +4,18 @@ import {CalculatorButton} from '../components/CalculatorButton';
 import {useCalculator} from '../hooks/useCalculator';
 
 export const CalculatorScreen = () => {
-  const {number, buildNumber} = useCalculator();
+  const {
+    number,
+    prevNumber,
+    buildNumber,
+    toggleSign,
+    deleteOperation,
+    clean,
+    divideOperation,
+    multiplyOperation,
+    subtractOperation,
+    addOperation,
+  } = useCalculator();
 
   return (
     <View style={styles.calculatorContainer}>
@@ -12,31 +23,33 @@ export const CalculatorScreen = () => {
         <Text adjustsFontSizeToFit numberOfLines={1} style={styles.mainResult}>
           {number}
         </Text>
-        <Text style={styles.subResult}>15</Text>
+        <Text adjustsFontSizeToFit numberOfLines={1} style={styles.subResult}>
+          {prevNumber === '0' ? ' ' : prevNumber}
+        </Text>
       </View>
 
       <View style={styles.row}>
         <CalculatorButton
-          onPress={() => console.log('C')}
+          onPress={() => clean()}
           label="C"
           color={colors.lightGray}
           blackText
         />
         <CalculatorButton
-          onPress={() => console.log('+/-')}
+          onPress={toggleSign}
           label="+/-"
           color={colors.lightGray}
           blackText
         />
         <CalculatorButton
-          onPress={() => console.log('del')}
+          onPress={() => deleteOperation(number)}
           label="del"
           color={colors.lightGray}
           blackText
         />
         <CalculatorButton
-          onPress={() => console.log('/')}
-          label="/"
+          onPress={divideOperation}
+          label="÷"
           color={colors.orange}
         />
       </View>
@@ -46,8 +59,8 @@ export const CalculatorScreen = () => {
         <CalculatorButton onPress={() => buildNumber('8')} label="8" />
         <CalculatorButton onPress={() => buildNumber('9')} label="9" />
         <CalculatorButton
-          onPress={() => console.log('÷')}
-          label="÷"
+          onPress={multiplyOperation}
+          label="x"
           color={colors.orange}
         />
       </View>
@@ -57,8 +70,8 @@ export const CalculatorScreen = () => {
         <CalculatorButton onPress={() => buildNumber('5')} label="5" />
         <CalculatorButton onPress={() => buildNumber('6')} label="6" />
         <CalculatorButton
-          onPress={() => console.log('x')}
-          label="x"
+          onPress={subtractOperation}
+          label="-"
           color={colors.orange}
         />
       </View>
@@ -68,7 +81,7 @@ export const CalculatorScreen = () => {
         <CalculatorButton onPress={() => buildNumber('2')} label="2" />
         <CalculatorButton onPress={() => buildNumber('3')} label="3" />
         <CalculatorButton
-          onPress={() => console.log('+')}
+          onPress={addOperation}
           label="+"
           color={colors.orange}
         />
@@ -81,7 +94,11 @@ export const CalculatorScreen = () => {
           doubleSize
         />
         <CalculatorButton onPress={() => buildNumber('.')} label="." />
-        <CalculatorButton onPress={() => console.log('=')} label="=" />
+        <CalculatorButton
+          onPress={() => console.log('=')}
+          label="="
+          color={colors.orange}
+        />
       </View>
     </View>
   );
